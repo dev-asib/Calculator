@@ -20,13 +20,13 @@ class CalculatorController extends GetxController {
   }
 
   void appendInput(String value) {
-    if (_userInput.isEmpty && (isOperator(value) || value == '0')) {
+    if (_userInput.isEmpty && (isOperatorsAndDotSymbole(value) || value == '0' || value =='.')) {
       return;
     }
 
     if (_userInput.isNotEmpty &&
-        isOperator(value) &&
-        isOperator(_userInput[_userInput.length - 1])) {
+        isOperatorsAndDotSymbole(value) &&
+        isOperatorsAndDotSymbole(_userInput[_userInput.length - 1])) {
       return;
     }
 
@@ -34,12 +34,13 @@ class CalculatorController extends GetxController {
     update();
   }
 
-  bool isOperator(String value) {
+  bool isOperatorsAndDotSymbole(String value) {
     return  value == '+' ||
             value == '-' ||
             value == 'x' ||
             value == '/' ||
-            value == '%';
+            value == '%' ||
+            value == '.';
   }
 
   void allClear() {
